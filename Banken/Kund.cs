@@ -8,7 +8,15 @@ namespace Banken
 {
     class Kund
     {
-        public String Namn; 
-        public int Saldo
+        public String Namn;
+        public int Saldo;
+
+       
+
+        public String Visakund ()
+        {
+            return Namn + Saldo;
+        }
+
     }
 }
