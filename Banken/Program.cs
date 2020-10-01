@@ -28,7 +28,7 @@ namespace Banken
                     break;
                 case 3:
                     Console.WriteLine("Du valde att se alla befintliga kunder");
-                    Showcustomer();
+                    Showcustomers();
                     break;
                 case 4:
                     Console.WriteLine("Du valde att se en kunds saldo");
@@ -51,10 +51,10 @@ namespace Banken
                     Console.WriteLine("Du gjorde ett felaktigt val");
                     break;
             }
-           
 
 
-             
+
+
 
         }
 
@@ -73,23 +73,31 @@ namespace Banken
             throw new NotImplementedException();
         }
 
-        private static void Showcustomer()
+        private static void Showcustomers()
         {
             throw new NotImplementedException();
         }
 
         private static int GetChoiseFromUser()
         {
-            Console.WriteLine("1.Ny användare");
-            Console.WriteLine("2.Ta bort användare");
-            Console.WriteLine("3. Visa alla befintliga användare");
-            Console.WriteLine("4.Visa saldo för en användare");
-            Console.WriteLine("5.Gör en insättning för en användare");
-            Console.WriteLine("6.Gör ett uttag för en användare");
-            Console.WriteLine("7.Avsluta programmet");
-            Console.WriteLine("Skriv ditt val");
-            Console.ReadLine    
-                string strChoise = Console.ReadLine}
+
+
+
+                Console.WriteLine("1.Ny användare");
+                Console.WriteLine("2.Ta bort användare");
+                Console.WriteLine("3. Visa alla befintliga användare");
+                Console.WriteLine("4.Visa saldo för en användare");
+                Console.WriteLine("5.Gör en insättning för en användare");
+                Console.WriteLine("6.Gör ett uttag för en användare");
+                Console.WriteLine("7.Avsluta programmet");
+                Console.WriteLine("Skriv ditt val");
+                Console.ReadLine();
+                string strChoise = Console.ReadLine();
+                int choise = int.Parse(strChoise);
+                return choise;
+
+            
+        }
 
         private static void RemoveCustomer()
         {
@@ -98,7 +106,17 @@ namespace Banken
 
         private static void AddCustomer()
         {
-            throw new NotImplementedException();
+            
+            Kund kund1  = new Kund();
+            kund1.Namn = "Marcus";
+            KundLista.Add(kund1);
+            
+            for(int i =0; i < KundLista.Count; i++)
+            {
+                Console.WriteLine(KundLista[i].());
+            }
+
         }
+
     }
 }
