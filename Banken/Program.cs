@@ -22,8 +22,6 @@ namespace Banken
                 // så kommer programmet skicka användaren vidare till nästa fråga.
                 // men om användaren svara konstigt så inte programmet förstår kommer den säga felaktigt svar
                 // då får användaren försjöka igen.
-
-
                 choise = GetChoiseFromUser();
                 switch (choise)
                 {
@@ -98,7 +96,6 @@ namespace Banken
             string strMoney = Console.ReadLine();
             int money = int.Parse(strMoney);
             customerList[choise].Balance += money;
-
         }
 
         private static void ShowBalance()
@@ -111,7 +108,6 @@ namespace Banken
             string strChoise = Console.ReadLine();
             int choise = int.Parse(strChoise);
             Console.WriteLine(customerList[choise].Balance);
-
         }
 
         private static void Showcustomers()
@@ -125,8 +121,6 @@ namespace Banken
 
         private static int GetChoiseFromUser()
         {
-
-
             //här så frågar programmet vad användaren vill göra för val om den vill göra en ny användare eller ta ut
             // pengar mm. Sen när användaren har svarat vad den vill så retuneras svaret i variabeln choise.
                 Console.WriteLine("1.Ny användare");
@@ -140,8 +134,6 @@ namespace Banken
                 string strChoise = Console.ReadLine();
                 int choise = int.Parse(strChoise);
                 return choise;
-
-            
         }
 
         private static void RemoveCustomer()
@@ -154,14 +146,12 @@ namespace Banken
             string strChoise = Console.ReadLine();
             int choise = int.Parse(strChoise);
             customerList.RemoveAt(choise);
-
         }
 
         private static void AddCustomer()
         {
             // Här kommer kunden att kunna lägga till en ny kund. Dom kommer få fårgan om vad kunden heter och efter
             // dom skrivit namnet så sparas kundens namn och balans som kommer vara 0 tills någon lägger in pengar.
-            
             Customer kund1  = new Customer();
             Console.Write("vänligen ange kundens namn: ");
             kund1.Name = Console.ReadLine();
