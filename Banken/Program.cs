@@ -5,12 +5,15 @@ using System.Runtime.InteropServices.WindowsRuntime;
 using System.Security.AccessControl;
 using System.Text;
 using System.Threading.Tasks;
+using System.IO;
 
 namespace Banken
 {
     class Program
     {
         static List<Customer> customerList = new List<Customer>();
+        static string filepath = @"C:\test\";
+        static string filename = @"data.txt";
 
         static void Main(string[] args)
         {
@@ -61,10 +64,42 @@ namespace Banken
                 }
             }
 
+            WriteCustomersToFile();
 
 
 
         }
+
+        private static void WriteCustomersToFile()
+        {
+            string users = "";
+            foreach (Customer u in customerList)
+            {
+                users += u.Name + ";";
+            }
+            WriteFile(filepath, filename, users);
+        }
+
+        static void WriteFile(string filepath, string filename, string text)
+        {
+            string f = filepath + filename;
+            if (File.Exists(f))
+            {
+                File.Delete(f);
+            }
+            if (Directory.Exists(filepath) == false)
+            {
+
+                Directory.CreateDirectory(filepath);
+
+            }
+            File.WriteAllText(f, text);
+
+        }
+
+
+
+
 
         private static void RemoveBalance()
         {
