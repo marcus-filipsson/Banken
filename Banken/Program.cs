@@ -17,6 +17,13 @@ namespace Banken
 
         static void Main(string[] args)
         {
+            string text = ReadFile(filepath + filename);
+            string[] items = text.Split(';');
+
+            Customer ui1 = new Customer(items[0]);
+            Customer ui2 = new Customer(items[1]);
+            customerList.Add(ui1);
+            customerList.Add(ui2);
             // choise är 0 så när choise inte är större eller lika med 7 så stängs programmet.
             int choise = 0;
             while (choise !=7)
@@ -68,14 +75,22 @@ namespace Banken
 
 
 
+
         }
+
+        static string ReadFile(string filename)
+        {
+            string text = File.ReadAllText(filename);
+            return text;
+        }
+
 
         private static void WriteCustomersToFile()
         {
             string users = "";
             foreach (Customer u in customerList)
             {
-                users += u.Name + ";";
+                users += u.name + ";";
             }
             WriteFile(filepath, filename, users);
         }
@@ -114,7 +129,7 @@ namespace Banken
             Console.Write("Hur mycket pengar vill du ta ut?: ");
             string strGetMoney = Console.ReadLine();
             int getMoney = int.Parse(strGetMoney);
-            customerList[choise].Balance -= getMoney;
+            customerList[choise].balance -= getMoney;
         }
 
         private static void AddBalance()
@@ -130,7 +145,7 @@ namespace Banken
             Console.Write("Hur mycket pengar vill du lägga in?: ");
             string strMoney = Console.ReadLine();
             int money = int.Parse(strMoney);
-            customerList[choise].Balance += money;
+            customerList[choise].balance += money;
         }
 
         private static void ShowBalance()
@@ -142,7 +157,7 @@ namespace Banken
             Console.Write("Vilken kund (ange siffran) vill du se kontouppgifterna på?: ");
             string strChoise = Console.ReadLine();
             int choise = int.Parse(strChoise);
-            Console.WriteLine(customerList[choise].Balance);
+            Console.WriteLine(customerList[choise].balance);
         }
 
         private static void Showcustomers()
@@ -189,7 +204,7 @@ namespace Banken
             // dom skrivit namnet så sparas kundens namn och balans som kommer vara 0 tills någon lägger in pengar.
             Customer kund1  = new Customer();
             Console.Write("vänligen ange kundens namn: ");
-            kund1.Name = Console.ReadLine();
+            kund1.name = Console.ReadLine();
             customerList.Add(kund1);
             
             
