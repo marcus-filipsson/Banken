@@ -12,18 +12,25 @@ namespace Banken
     class Program
     {
         static List<Customer> customerList = new List<Customer>();
+        // här visas programmet vart den ska gå och vart den ska göra ett document.
         static string filepath = @"C:\test\";
         static string filename = @"data.txt";
 
         static void Main(string[] args)
         {
+            // här så tittar han om har laggt till några kunder sen innan och tittar om de finns några kunder
+            // då kommer programmet lägga till dom kunderna i listan.
             string text = ReadFile(filepath + filename);
-            string[] items = text.Split(';');
+            if (text != "")
+            {
+                string[] items = text.Split(';');
+                foreach (string item in items)
+                {
+                    Customer ui1 = new Customer(item);
+                    customerList.Add(ui1);
+                }
+            }
 
-            Customer ui1 = new Customer(items[0]);
-            Customer ui2 = new Customer(items[1]);
-            customerList.Add(ui1);
-            customerList.Add(ui2);
             // choise är 0 så när choise inte är större eller lika med 7 så stängs programmet.
             int choise = 0;
             while (choise !=7)
@@ -80,13 +87,19 @@ namespace Banken
 
         static string ReadFile(string filename)
         {
-            string text = File.ReadAllText(filename);
+            // om filen finns så ska programmet läsa filen annars inte.
+            string text = "";
+            if (File.Exists(filename))
+            {
+                text = File.ReadAllText(filename);
+            }
             return text;
         }
 
 
         private static void WriteCustomersToFile()
         {
+            // för varje customer in customerlistan så ska man spara namnet i variabeln users.
             string users = "";
             foreach (Customer u in customerList)
             {
@@ -97,17 +110,20 @@ namespace Banken
 
         static void WriteFile(string filepath, string filename, string text)
         {
+            // om de finns en fil med gammal information så tar programmet bort den filen.
             string f = filepath + filename;
             if (File.Exists(f))
             {
                 File.Delete(f);
             }
+            // om de inte finns ett biblotek så gör programmet ett och skrier ned f och text.
             if (Directory.Exists(filepath) == false)
             {
 
                 Directory.CreateDirectory(filepath);
 
             }
+            
             File.WriteAllText(f, text);
 
         }
